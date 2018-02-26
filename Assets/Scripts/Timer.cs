@@ -20,9 +20,9 @@ public class Timer : MonoBehaviour
 	public static void addTime()
 	{
 		float toAdd;
-		if (Global.me.timeLeft < 15)
+		if (Global.me.timeLeft < 60)
 		{
-			toAdd =  15f - Global.me.timeLeft;
+			toAdd =  60f - Global.me.timeLeft;
 			Debug.Log(toAdd);
 			Global.me.timeLeft += toAdd;
 		}

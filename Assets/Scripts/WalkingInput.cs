@@ -32,7 +32,7 @@ public class WalkingInput : MonoBehaviour //keycode based input. Random key gene
 	public KeyCode left2 = KeyCode.F;
 	public KeyCode left3 = KeyCode.E;
 	public KeyCode left4 = KeyCode.J;
-	public KeyCode left5 = KeyCode.F;
+	public KeyCode left5 = KeyCode.W;
 
 	public bool boolLeft1 = false;
 	public bool boolLeft2 = false;
@@ -40,28 +40,12 @@ public class WalkingInput : MonoBehaviour //keycode based input. Random key gene
 	public bool boolLeft4 = false;
 	public bool boolLeft5 = false;
 
-	public GameObject rightFoot;
-	public GameObject leftFoot;
-
-	public float minusTime = .5f;
-
-	public Vector3 startingPoint1 = new Vector3();
-	
-	void Start () 
-	{
-		
-	}
-	
-	void Update ()
-	{
-		
-	}
 
 	void FixedUpdate()
 	{
 		if (rightActive == true && Global.me.timeLeft > 0 && Global.me.stepsLeft == 5)
 		{
-			//rightMovement();
+			rightMovement();
 		}
 		
 		if (leftActive == true && Global.me.timeLeft > 0 && Global.me.stepsLeft == 4)
@@ -71,7 +55,7 @@ public class WalkingInput : MonoBehaviour //keycode based input. Random key gene
 		
 		if (rightActive == true && Global.me.timeLeft > 0 && Global.me.stepsLeft == 3)
 		{
-			//rightMovement();
+			rightMovement();
 		}
 		
 		if (leftActive == true && Global.me.timeLeft > 0 && Global.me.stepsLeft == 2)
@@ -81,22 +65,28 @@ public class WalkingInput : MonoBehaviour //keycode based input. Random key gene
 		
 		if (rightActive == true && Global.me.timeLeft > 0 && Global.me.stepsLeft == 1)
 		{
-			//rightMovement();
+			rightMovement();
 		}	
 	}
 
-	public void rightMovement(Vector3 startPos, Vector3 endPos)
+	public void rightMovement() //Vector3 startPos, Vector3 endPos
 	{
+		//counter for the tiny steps
+		int tinyStepCount = 0;
+
 		//first input
 		if (Input.GetKey(right1) && Global.me.passedOut == false)
 		{
 			Timer.addTime();
 			Debug.Log("1");
 			boolRight1 = true;
+			tinyStepCount += 1;
+			GetComponent<MovingFeet>().tinyStepRightFow(tinyStepCount);
 		}
 		else
 		{
 			boolRight1 = false;
+			GetComponent<MovingFeet>().tinyStepRightBac(tinyStepCount);
 		}
 		
 		//second input
@@ -104,10 +94,13 @@ public class WalkingInput : MonoBehaviour //keycode based input. Random key gene
 		{
 			Debug.Log("2");
 			boolRight2 = true;
+			tinyStepCount += 1;
+			GetComponent<MovingFeet>().tinyStepRightFow(tinyStepCount);
 		}
 		else
 		{
 			boolRight2 = false;
+			GetComponent<MovingFeet>().tinyStepRightBac(tinyStepCount);
 		}
 		
 		//third input
@@ -115,10 +108,13 @@ public class WalkingInput : MonoBehaviour //keycode based input. Random key gene
 		{
 			Debug.Log("3");
 			boolRight3 = true;
+			tinyStepCount += 1;
+			GetComponent<MovingFeet>().tinyStepRightFow(tinyStepCount);
 		}
 		else
 		{
 			boolRight3 = false;
+			GetComponent<MovingFeet>().tinyStepRightBac(tinyStepCount);
 		}
 		
 		//fourth input
@@ -126,10 +122,13 @@ public class WalkingInput : MonoBehaviour //keycode based input. Random key gene
 		{
 			Debug.Log("4");
 			boolRight4 = true;
+			tinyStepCount += 1;
+			GetComponent<MovingFeet>().tinyStepRightFow(tinyStepCount);
 		}
 		else
 		{
 			boolRight4 = false;
+			GetComponent<MovingFeet>().tinyStepRightBac(tinyStepCount);
 		}
 		
 		//fifth input
@@ -137,30 +136,40 @@ public class WalkingInput : MonoBehaviour //keycode based input. Random key gene
 		{
 			Debug.Log("5");
 			boolRight5 = true;
+			tinyStepCount += 1;
+			GetComponent<MovingFeet>().tinyStepRightFow(tinyStepCount);
 		}
 		else
 		{
 			boolRight5 = false;
+			GetComponent<MovingFeet>().tinyStepRightBac(tinyStepCount);
 		}
 		
 		//end of the step
 		if (boolRight5 == true)
 		{
 			stepText.text = "You said the fuck word and took a step foward!";
+			tinyStepCount = 0;
+			Global.me.stepsLeft -= 1;
 			boolRight1 = false;
 			boolRight2 = false;
 			boolRight3 = false;
 			boolRight4 = false;
-			boolRight5 = false;
-			Global.me.stepsLeft -= 1;
 			leftActive = true;
 			rightActive = false;
+			boolRight5 = false;
 		}
 	}
 
 
+//______________________________________________________________________________________________________________
+	
+	//left movement
 	public void leftMovement()
 	{
+		//counter for the tiny steps
+		int tinyStepCount = 0;
+		
 		//first input
 		if (Input.GetKey(left1) && Global.me.passedOut == false)
 		{
@@ -168,10 +177,13 @@ public class WalkingInput : MonoBehaviour //keycode based input. Random key gene
 			Timer.addTime();
 			Debug.Log("1");
 			boolLeft1 = true;
+			tinyStepCount += 1;
+			GetComponent<MovingFeet>().tinyStepLeftFow(tinyStepCount);
 		}
 		else
 		{
 			boolLeft1 = false;
+			GetComponent<MovingFeet>().tinyStepLeftBac(tinyStepCount);
 		}
 		
 		//second input
@@ -179,10 +191,13 @@ public class WalkingInput : MonoBehaviour //keycode based input. Random key gene
 		{
 			Debug.Log("2");
 			boolLeft2 = true;
+			tinyStepCount += 1;
+			GetComponent<MovingFeet>().tinyStepLeftFow(tinyStepCount);
 		}
 		else
 		{
 			boolLeft2 = false;
+			GetComponent<MovingFeet>().tinyStepLeftBac(tinyStepCount);
 		}
 		
 		//third input
@@ -190,10 +205,13 @@ public class WalkingInput : MonoBehaviour //keycode based input. Random key gene
 		{
 			Debug.Log("3");
 			boolLeft3 = true;
+			tinyStepCount += 1;
+			GetComponent<MovingFeet>().tinyStepLeftFow(tinyStepCount);
 		}
 		else
 		{
 			boolLeft3 = false;
+			GetComponent<MovingFeet>().tinyStepLeftBac(tinyStepCount);
 		}
 		
 		//fourth input
@@ -201,10 +219,13 @@ public class WalkingInput : MonoBehaviour //keycode based input. Random key gene
 		{
 			Debug.Log("4");
 			boolLeft4 = true;
+			tinyStepCount += 1;
+			GetComponent<MovingFeet>().tinyStepLeftFow(tinyStepCount);
 		}
 		else
 		{
 			boolLeft4 = false;
+			GetComponent<MovingFeet>().tinyStepLeftBac(tinyStepCount);
 		}
 		
 		//fifth input
@@ -212,40 +233,30 @@ public class WalkingInput : MonoBehaviour //keycode based input. Random key gene
 		{
 			Debug.Log("5");
 			boolLeft5 = true;
+			tinyStepCount += 1;
+			GetComponent<MovingFeet>().tinyStepLeftFow(tinyStepCount);
 		}
 		else
 		{
 			boolLeft5 = false;
+			GetComponent<MovingFeet>().tinyStepLeftBac(tinyStepCount);
 		}
 		
 		//end of the step
-		if (boolRight5 == true)
+		if (boolLeft5 == true)
 		{
 			stepText.text = "You said the fuck word and took a step foward!";
+			tinyStepCount = 0;
+			Global.me.stepsLeft -= 1;
 			boolLeft1 = false;
 			boolLeft2 = false;
 			boolLeft3 = false;
 			boolLeft4 = false;
-			boolLeft5 = false;
-			Global.me.stepsLeft -= 1;
 			rightActive = true;
 			leftActive = false;
+			boolLeft5 = false;
 		}
 			
 	}
-
-	public void stepFoward(Transform position, Vector3 startingPoint, float time, int toAdd)
-	{
-		
-	}
-
-	public void stepBackward(Transform position, Vector3 startingPoint, float time, int toMinus)
-	{
-		
-	}
-	
-	
-
-	
 	
 }

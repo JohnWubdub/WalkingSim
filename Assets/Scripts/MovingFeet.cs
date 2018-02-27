@@ -11,20 +11,24 @@ public class MovingFeet : MonoBehaviour {
 	public GameObject head;
 	public GameObject body;
 	
-	//foots
-	public Vector3 startPos1Foot = new Vector3(0,0,0);
-	public Vector3 startPos2Foot = new Vector3(0,0,0);
-	public Vector3 startPos3Foot = new Vector3(0,0,0);
-	public Vector3 startPos4Foot = new Vector3(0,0,0);
-	public Vector3 startPos5Foot = new Vector3(0,0,0);
+	//Right foot
+	public Vector3 startPos1RightFoot = new Vector3(0,0,0);
+	public Vector3 startPos2RightFoot = new Vector3(0,0,0);
+	public Vector3 startPos3RightFoot = new Vector3(0,0,0);
 	
-	//legs
-	public Vector3 startPos1Leg = new Vector3(0,0,0);
-	public Vector3 startPos2Leg = new Vector3(0,0,0);
-	public Vector3 startPos3Leg = new Vector3(0,0,0);
-	public Vector3 startPos4Leg = new Vector3(0,0,0);
-	public Vector3 startPos5Leg = new Vector3(0,0,0);
+	//Left foot
+	public Vector3 startPos1LeftFoot = new Vector3(0,0,0);
+	public Vector3 startPos2LeftFoot = new Vector3(0,0,0);
 	
+	//Right leg
+	public Vector3 startPos1RightLeg = new Vector3(0,0,0);
+	public Vector3 startPos2RightLeg = new Vector3(0,0,0);
+	public Vector3 startPos3RightLeg = new Vector3(0,0,0);
+	
+	//Left leg
+	public Vector3 startPos1LeftLeg = new Vector3(0,0,0);
+	public Vector3 startPos2LeftLeg = new Vector3(0,0,0);
+
 	//head
 	public Vector3 startPos1Head = new Vector3(0,0,0);
 	public Vector3 startPos2Head = new Vector3(0,0,0);
@@ -43,18 +47,22 @@ public class MovingFeet : MonoBehaviour {
 	void Start () 
 	{
 		//feet
-		startPos1Foot = rightFoot.transform.position; //right
-		startPos2Foot = leftFoot.transform.position; //left
-		startPos3Foot = startPos1Foot + (tinyStepFow * 5); //right
-		startPos4Foot = startPos2Foot + (tinyStepFow * 5); //left
-		startPos5Foot = startPos3Foot + (tinyStepFow * 5); //right
+		startPos1RightFoot = rightFoot.transform.position; //right
+		startPos1LeftFoot = leftFoot.transform.position; //left
+
+		startPos2RightFoot = startPos1RightFoot + (tinyStepFow * 5); //right
+		startPos2LeftFoot = startPos1LeftFoot + (tinyStepFow * 5); //left
+
+		startPos3RightFoot = startPos2RightFoot + (tinyStepFow * 5); //right
 		
 		//legs
-		startPos1Leg = rightLeg.transform.position; //right
-		startPos2Leg = leftLeg.transform.position; //left
-		startPos3Leg = startPos1Leg + (tinyStepFow * 5); //right
-		startPos4Leg = startPos2Leg + (tinyStepFow * 5); //left
-		startPos5Leg = startPos3Leg + (tinyStepFow * 5); //right
+		startPos1RightLeg = rightLeg.transform.position; //right
+		startPos1LeftLeg = leftLeg.transform.position; //left
+		
+		startPos2RightLeg = startPos1RightLeg + (tinyStepFow * 5); //right
+		startPos2LeftLeg = startPos1LeftLeg + (tinyStepFow * 5); //left
+		
+		startPos3RightLeg = startPos2RightLeg + (tinyStepFow * 5); //right
 		
 		//head
 		startPos1Head = head.transform.position;
@@ -69,26 +77,32 @@ public class MovingFeet : MonoBehaviour {
 
 	}
 
+	void Update()
+	{
+		bigMove();
+	}
+
+//_________________________________________________________________________________________________________
 	
 	//Right Side
 	public void tinyStepRightFow(int tinyStepCount) //taking a step foward
 	{
 		if (Global.me.stepsLeft == 5)
 		{
-			rightFoot.transform.position = startPos1Foot + (tinyStepFow * tinyStepCount);
-			rightLeg.transform.position = startPos1Leg + (tinyStepFow * tinyStepCount);
+			rightFoot.transform.position = startPos1RightFoot + (tinyStepFow * tinyStepCount);
+			rightLeg.transform.position = startPos1RightLeg + (tinyStepFow * tinyStepCount);
 		}
 
 		if (Global.me.stepsLeft == 3)
 		{
-			rightFoot.transform.position = startPos3Foot + (tinyStepFow * tinyStepCount);
-			leftLeg.transform.position = startPos3Leg + (tinyStepFow * tinyStepCount);
+			rightFoot.transform.position = startPos2RightFoot + (tinyStepFow * tinyStepCount);
+			leftLeg.transform.position = startPos2RightLeg + (tinyStepFow * tinyStepCount);
 		}
 		
 		if (Global.me.stepsLeft == 1)
 		{
-			rightFoot.transform.position = startPos5Foot + (tinyStepFow * tinyStepCount);
-			rightLeg.transform.position = startPos5Leg + (tinyStepFow * tinyStepCount);
+			rightFoot.transform.position = startPos3RightFoot + (tinyStepFow * tinyStepCount);
+			rightLeg.transform.position = startPos3RightLeg + (tinyStepFow * tinyStepCount);
 		}
 	}
 	
@@ -96,20 +110,20 @@ public class MovingFeet : MonoBehaviour {
 	{
 		if (Global.me.stepsLeft == 5)
 		{
-			rightFoot.transform.position = startPos1Foot + (tinyStepFow * tinyStepCount) + tinyStepBac;
-			rightLeg.transform.position = startPos1Leg + (tinyStepFow * tinyStepCount) + tinyStepBac;
+			rightFoot.transform.position = startPos1RightFoot + (tinyStepFow * tinyStepCount) + tinyStepBac;
+			rightLeg.transform.position = startPos1RightLeg + (tinyStepFow * tinyStepCount) + tinyStepBac;
 		}
 
 		if (Global.me.stepsLeft == 3)
 		{
-			rightFoot.transform.position = startPos3Foot + (tinyStepFow * tinyStepCount) + tinyStepBac;
-			rightLeg.transform.position = startPos3Leg + (tinyStepFow * tinyStepCount) + tinyStepBac;
+			rightFoot.transform.position = startPos2RightFoot + (tinyStepFow * tinyStepCount) + tinyStepBac;
+			rightLeg.transform.position = startPos2RightLeg + (tinyStepFow * tinyStepCount) + tinyStepBac;
 		}
 		
 		if (Global.me.stepsLeft == 1)
 		{
-			rightFoot.transform.position = startPos5Foot + (tinyStepFow * tinyStepCount) + tinyStepBac;
-			rightLeg.transform.position = startPos5Leg + (tinyStepFow * tinyStepCount) + tinyStepBac;
+			rightFoot.transform.position = startPos3RightFoot + (tinyStepFow * tinyStepCount) + tinyStepBac;
+			rightLeg.transform.position = startPos3RightLeg + (tinyStepFow * tinyStepCount) + tinyStepBac;
 		}
 	}
 	
@@ -120,14 +134,14 @@ public class MovingFeet : MonoBehaviour {
 	{
 		if (Global.me.stepsLeft == 4)
 		{
-			leftFoot.transform.position = startPos2Foot + (tinyStepFow * tinyStepCount);
-			leftLeg.transform.position = startPos2Leg + (tinyStepFow * tinyStepCount);
+			leftFoot.transform.position = startPos1LeftFoot + (tinyStepFow * tinyStepCount);
+			leftLeg.transform.position = startPos1LeftLeg + (tinyStepFow * tinyStepCount);
 		}
 
 		if (Global.me.stepsLeft == 2)
 		{
-			leftFoot.transform.position = startPos4Foot + (tinyStepFow * tinyStepCount);
-			leftLeg.transform.position = startPos4Leg + (tinyStepFow * tinyStepCount);
+			leftFoot.transform.position = startPos2LeftFoot + (tinyStepFow * tinyStepCount);
+			leftLeg.transform.position = startPos2LeftLeg + (tinyStepFow * tinyStepCount);
 		}
 		
 	}
@@ -136,14 +150,14 @@ public class MovingFeet : MonoBehaviour {
 	{
 		if (Global.me.stepsLeft == 4)
 		{
-			leftFoot.transform.position = startPos1Foot + (tinyStepFow * tinyStepCount) + tinyStepBac;
-			leftLeg.transform.position = startPos1Leg + (tinyStepFow * tinyStepCount) + tinyStepBac;
+			leftFoot.transform.position = startPos1LeftFoot + (tinyStepFow * tinyStepCount) + tinyStepBac;
+			leftLeg.transform.position = startPos1LeftLeg + (tinyStepFow * tinyStepCount) + tinyStepBac;
 		}
 
 		if (Global.me.stepsLeft == 2)
 		{
-			leftFoot.transform.position = startPos4Foot + (tinyStepFow * tinyStepCount) + tinyStepBac;
-			leftLeg.transform.position = startPos4Leg + (tinyStepFow * tinyStepCount) + tinyStepBac;
+			leftFoot.transform.position = startPos2LeftFoot + (tinyStepFow * tinyStepCount) + tinyStepBac;
+			leftLeg.transform.position = startPos2LeftLeg + (tinyStepFow * tinyStepCount) + tinyStepBac;
 		}
 		
 	}

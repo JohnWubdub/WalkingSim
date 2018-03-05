@@ -32,7 +32,7 @@ public class WalkingInput : MonoBehaviour //keycode based input. Random key gene
 	public KeyCode left2 = KeyCode.F;
 	public KeyCode left3 = KeyCode.E;
 	public KeyCode left4 = KeyCode.Q; //J keycode wasn't working for some reason 
-	public KeyCode left5 = KeyCode.W; //H keycode now
+	public KeyCode left5 = KeyCode.H; //H keycode now
 
 	public bool boolLeft1 = false;
 	public bool boolLeft2 = false;

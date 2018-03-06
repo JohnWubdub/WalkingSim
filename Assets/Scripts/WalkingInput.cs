@@ -5,7 +5,7 @@ using System.ComponentModel.Design;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WalkingInput : MonoBehaviour //keycode based input. Random key generator
+public class WalkingInput : MonoBehaviour //keycode based input. 
 {
 	//temporary code!
 	public Text stepText;
@@ -41,7 +41,7 @@ public class WalkingInput : MonoBehaviour //keycode based input. Random key gene
 	public bool boolLeft5 = false;
 
 
-	void FixedUpdate()
+	void Update()
 	{
 		if (rightActive == true && Global.me.timeLeft > 0 && Global.me.stepsLeft == 5) //right
 		{
@@ -72,7 +72,7 @@ public class WalkingInput : MonoBehaviour //keycode based input. Random key gene
 	public void rightMovement() //Vector3 startPos, Vector3 endPos
 	{
 		//counter for the tiny steps
-		int tinyStepCount = 0;
+		int tinyStepCount = 1;
 
 		//first input
 		if (Input.GetKey(right1) && Global.me.passedOut == false)
@@ -168,7 +168,7 @@ public class WalkingInput : MonoBehaviour //keycode based input. Random key gene
 	public void leftMovement()
 	{
 		//counter for the tiny steps
-		int tinyStepCount = 0;
+		int tinyStepCount = 1;
 		
 		//first input
 		if (Input.GetKey(left1) && Global.me.passedOut == false)

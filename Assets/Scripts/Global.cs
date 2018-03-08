@@ -5,7 +5,7 @@ public class Global : MonoBehaviourSingleton<Global> //acts almost like a bank f
 {
 	public static Global me;
 	public float timeLeft = 60f; //seconds until collapse
-	public int stepsLeft = 5;
+	public int stepsLeft = 6;
 	public bool passedOut = false;
 
 

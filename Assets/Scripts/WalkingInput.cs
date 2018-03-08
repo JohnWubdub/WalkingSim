@@ -7,10 +7,6 @@ using UnityEngine.UI;
 
 public class WalkingInput : MonoBehaviour //keycode based input. 
 {
-	//temporary code!
-	public Text stepText;
-	public String regular = " ";
-
 	//keycodes for the walking input
 	//All of them are in order
 	public bool rightActive = true;
@@ -41,35 +37,44 @@ public class WalkingInput : MonoBehaviour //keycode based input.
 	public bool boolLeft5 = false;
 
 
+
 	void Update()
 	{
-		if (rightActive == true && Global.me.timeLeft > 0 && Global.me.stepsLeft == 5) //right
+		Debug.Log("Fuck");
+		
+		if (rightActive == true && Global.me.timeLeft > 0 && Global.me.stepsLeft == 6) //right
 		{
 			rightMovement();
 		}
 		
-		if (leftActive == true && Global.me.timeLeft > 0 && Global.me.stepsLeft == 4) //left
+		if (leftActive == true && Global.me.timeLeft > 0 && Global.me.stepsLeft == 5) //left
 		{
 			leftMovement();
 		}
 		
-		if (rightActive == true && Global.me.timeLeft > 0 && Global.me.stepsLeft == 3) //right
+		if (rightActive == true && Global.me.timeLeft > 0 && Global.me.stepsLeft == 4) //right
 		{
 			rightMovement();
 		}
 		
-		if (leftActive == true && Global.me.timeLeft > 0 && Global.me.stepsLeft == 2) //left
+		if (leftActive == true && Global.me.timeLeft > 0 && Global.me.stepsLeft == 3) //left
 		{
 			leftMovement();
 		}
 		
-		if (rightActive == true && Global.me.timeLeft > 0 && Global.me.stepsLeft == 1) //right
+		if (rightActive == true && Global.me.timeLeft > 0 && Global.me.stepsLeft == 2) //right
 		{
 			rightMovement();
+		}
+		
+		if (leftActive == true && Global.me.timeLeft > 0 && Global.me.stepsLeft == 1) //right
+		{
+			leftMovement();
 		}	
 	}
 
-	public void rightMovement() //Vector3 startPos, Vector3 endPos
+//-----------------------------------------------------------------------------------------------------------------
+	void rightMovement() //Vector3 startPos, Vector3 endPos
 	{
 		//counter for the tiny steps
 		int tinyStepCount = 1;
@@ -148,7 +153,7 @@ public class WalkingInput : MonoBehaviour //keycode based input.
 		//end of the step
 		if (boolRight5 == true)
 		{
-			stepText.text = "You said the fuck word and took a step foward!";
+			Timer.addTime();
 			tinyStepCount = 0;
 			Global.me.stepsLeft -= 1;
 			boolRight1 = false;
@@ -165,15 +170,14 @@ public class WalkingInput : MonoBehaviour //keycode based input.
 //______________________________________________________________________________________________________________
 	
 	//left movement
-	public void leftMovement()
+	void leftMovement()
 	{
 		//counter for the tiny steps
-		int tinyStepCount = 1;
+		int tinyStepCount = 0;
 		
 		//first input
 		if (Input.GetKey(left1) && Global.me.passedOut == false)
 		{
-			stepText.text = "";
 			Timer.addTime();
 			Debug.Log("1");
 			boolLeft1 = true;
@@ -245,7 +249,7 @@ public class WalkingInput : MonoBehaviour //keycode based input.
 		//end of the step
 		if (boolLeft5 == true)
 		{
-			stepText.text = "You said the fuck word and took a step foward!";
+			Timer.addTime();
 			tinyStepCount = 0;
 			Global.me.stepsLeft -= 1;
 			boolLeft1 = false;

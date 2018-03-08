@@ -6,16 +6,13 @@ using UnityEngine.UI;
 public class Win : MonoBehaviour 
 {
 
-	
-	//tempoaray code 
-	public Text passoutText;
-	public string regular = " ";
+	public Image whiteOut;
 	
 	
 	// Use this for initialization
 	void Start () 
 	{
-		
+		whiteOut.GetComponent<CanvasRenderer>().SetAlpha(0f);
 	}
 	
 	// Update is called once per frame
@@ -23,7 +20,7 @@ public class Win : MonoBehaviour
 	{
 		if (Global.me.stepsLeft == 0)
 		{
-			passoutText.text = "You did it";
+			whiteOut.GetComponent<Image>().CrossFadeAlpha(1f, 1.0f, false);
 		}
 	}
 }
